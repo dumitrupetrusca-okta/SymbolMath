@@ -1,4 +1,3 @@
-
 The intention of the SymbolMath project is to produce a Java library for symbolic math.
 Expression simplification and equation solving are just two examples of possible applications.
 
@@ -10,3 +9,5 @@ At the moment the source contains:
     3. A transformer that converts binary operators into n-ary operators and extracts
        constant multipliers (this makes simplification easier)
     4. A simplifier that does not do anything yet!
+
+Contributors are welcome!
