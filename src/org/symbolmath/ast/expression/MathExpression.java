@@ -1,6 +1,7 @@
 package org.symbolmath.ast.expression;
 
 import org.symbolmath.ast.ASTElement;
+import org.symbolmath.scanner.TokenType;
 
 import java.util.List;
 
@@ -20,4 +21,11 @@ public abstract class MathExpression extends ASTElement {
   public List<ASTElement> getChildren() {
     return terms;
   }
+
+  public void removeChild(ASTElement astElement) {
+    terms.remove(astElement);
+  }
+
+  public abstract String getSignature();
+
 }

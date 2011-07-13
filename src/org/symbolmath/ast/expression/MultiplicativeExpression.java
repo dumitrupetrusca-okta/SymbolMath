@@ -27,9 +27,21 @@ public class MultiplicativeExpression extends MathExpression {
     return new MultiplicativeExpression(multiplier, newTerms);
   }
 
-  @Override
-  public String toString() {
-    return null;
+  public void join(MultiplicativeExpression expression) {
+    this.multiplier += expression.multiplier;
   }
 
+  @Override
+  public String toString() {
+    return (multiplier != 1 ? multiplier : "") + getSignature();
+  }
+
+  @Override
+  public String getSignature() {
+    String s = "";
+    for (ASTElement term : terms) {
+      s += "" + term;
+    }
+    return s;
+  }
 }

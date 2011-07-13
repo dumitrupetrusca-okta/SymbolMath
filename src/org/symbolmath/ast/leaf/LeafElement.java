@@ -2,7 +2,6 @@ package org.symbolmath.ast.leaf;
 
 import org.symbolmath.ast.ASTElement;
 
-import java.util.Collections;
 import java.util.List;
 
 public abstract class LeafElement extends ASTElement {
@@ -13,6 +12,6 @@ public abstract class LeafElement extends ASTElement {
 
   @Override
   public List<ASTElement> getChildren() {
-    return Collections.EMPTY_LIST;
+    return NO_CHILDREN;
   }
 }

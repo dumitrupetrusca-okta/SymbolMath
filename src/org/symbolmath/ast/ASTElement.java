@@ -1,8 +1,11 @@
 package org.symbolmath.ast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ASTElement {
+  public static final List<ASTElement> NO_CHILDREN = new ArrayList<ASTElement>();
+
   protected ASTElement parent;
 
   public ASTElement() {
@@ -21,4 +24,5 @@ public abstract class ASTElement {
   public abstract String toString();
 
   public abstract List<? extends ASTElement> getChildren();
+
 }

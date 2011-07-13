@@ -37,14 +37,4 @@ public class Transformer {
 
     return element;
   }
-
-  public static void main(String[] args) {
-    // 2(x^4+x) + 3(x^4+x)
-    Parser parser = new Parser("2*x*y + 3*x*y", true);
-    ASTElement tree = parser.parse();
-    Transformer transformer = new Transformer(tree);
-    ASTElement transformedTree = transformer.transform();
-    System.out.println();
-  }
-
 }

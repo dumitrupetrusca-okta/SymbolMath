@@ -180,11 +180,4 @@ P is
   private void consume() {
     currentToken = scanner.nextToken();
   }
-
-  public static void main(String[] args) {
-    Parser parser = new Parser("2*x + 3*x", true);
-    // 2(x^4+x) + 3(x^4+x)
-    ASTElement ASTElement = parser.parse();
-    System.out.println();
-  }
 }

@@ -100,11 +100,4 @@ public class Scanner {
     return Character.isJavaIdentifierStart(c);
   }
 
-  public static void main(String[] args) throws ParseException {
-    Scanner scanner = new Scanner("232*x", true);
-    while (scanner.hasTokens()) {
-      System.err.println(scanner.nextToken());
-    }
-  }
-
 }
