@@ -1,21 +1,30 @@
 package org.symbolmath.parser;
 
+import org.symbolmath.ast.ASTElement;
+import org.symbolmath.ast.leaf.IdentifierElement;
+import org.symbolmath.ast.leaf.IntegerElement;
+import org.symbolmath.ast.operation.AddOperation;
+import org.symbolmath.ast.operation.DivideOperation;
+import org.symbolmath.ast.operation.MultiplyOperation;
+import org.symbolmath.ast.operation.NegativeOperation;
+import org.symbolmath.ast.operation.PowerOperation;
+import org.symbolmath.ast.operation.SubtractOperation;
 import org.symbolmath.exception.ParseException;
-import org.symbolmath.scanner.*;
-import org.symbolmath.ast.*;
-import org.symbolmath.ast.leaf.*;
-import org.symbolmath.ast.operation.*;
-
-import java.util.List;
+import org.symbolmath.scanner.Scanner;
+import org.symbolmath.scanner.Token;
+import org.symbolmath.scanner.TokenType;
 
 import static org.symbolmath.scanner.TokenType.*;
 
-/*
-    E --> T {( "+" | "-" ) T}
-    T --> F {( "*" | "/" ) F}
-    F --> P ["^" F]
-    P --> v | "(" E ")" | "-" T
-*/
+/**
+ * This is the formal grammar of the language:
+ * <pre>
+ * Expression         --> MultiplicativeTerm {( "+" | "-" ) MultiplicativeTerm}
+ * MultiplicativeTerm --> PowerTerm {( "*" | "/" ) PowerTerm}
+ * PowerTerm          --> ParensAndUnaryTerm ["^" PowerTerm]
+ * ParensAndUnaryTerm --> ValueTerm | "(" Expression ")" | "-" PowerTerm | "+" PowerTerm
+ * </pre>
+ */
 public class Parser {
   private Scanner scanner;
   private Token currentToken;
@@ -25,17 +34,12 @@ public class Parser {
     consume();
   }
 
-  /**
-   Eparser is
-      var t : Tree
-      t := E
-      expect( end )
-      return t
-   */
   public ASTElement parse() {
     ASTElement expression = parseAdditiveExpression();
     match(EOF, "End of expression expected.");
-    setParents(expression, null);
+    if (expression != null) {
+      setParents(expression, null);
+    }
     return expression;
   }
 
@@ -46,17 +50,6 @@ public class Parser {
     }
   }
 
-  /*
-E is
-   var t : Tree
-   t := T
-   while next = "+" or next = "-"
-      const op := binary(next)
-      consume
-      const t1 := T
-      t := mkNode( op, t, t1 )
-   return t
-   */
   private ASTElement parseAdditiveExpression() {
     ASTElement expression = parseMultiplicativeExpression();
     TokenType tokenType = currentToken.getType();
@@ -73,17 +66,6 @@ E is
     return expression;
   }
 
-  /*
-T is
-   var t : Tree
-   t := F
-   while next = "*" or next = "/"
-      const op := binary(next)
-      consume
-      const t1 := F
-      t := mkNode( op, t, t1 )
-   return t
-   */
   private ASTElement parseMultiplicativeExpression() {
     ASTElement expression = parsePowerExpression();
     TokenType tokenType = currentToken.getType();
@@ -100,17 +82,6 @@ T is
     return expression;
   }
 
-  /*
-F is
-   var t : Tree
-   t := P
-   if next = "^"
-        consume
-        const t1 := F
-        return mkNode( binary("^"), t, t1)
-   else
-        return t
-   */
   private ASTElement parsePowerExpression() {
     ASTElement expression = parseParensAndUnaryExpression();
     TokenType tokenType = currentToken.getType();
@@ -123,25 +94,6 @@ F is
     }
   }
 
-  /*
-P is
-   var t : Tree
-   if next is a v
-        t := mkLeaf( next )
-        consume
-        return t
-   else if next = "("
-        consume
-        t := E
-        expect( ")" )
-        return t
-   else if next = "-"
-        consume
-        t := F
-        return mkNode( unary("-"), t)
-   else
-        error
-   */
   private ASTElement parseParensAndUnaryExpression() {
     TokenType tokenType = currentToken.getType();
     switch (tokenType) {
@@ -155,7 +107,7 @@ P is
         consume();
         return integerElement;
       }
-      case LPAREN:{
+      case LPAREN: {
         consume();
         ASTElement expression = parseAdditiveExpression();
         match(RPAREN, ") expected");
@@ -163,12 +115,18 @@ P is
         return expression;
       }
       case MINUS: {
+        consume();
         ASTElement expression = parsePowerExpression();
         return new NegativeOperation(expression);
       }
+      case PLUS: {
+        consume();
+        ASTElement expression = parsePowerExpression();
+        return expression;
+      }
     }
 
-    return null;  //To change body of created methods use File | Settings | File Templates.
+    return null;
   }
 
   private void match(TokenType tokenType, String errorMessage) {

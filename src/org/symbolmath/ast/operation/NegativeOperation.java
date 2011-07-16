@@ -11,11 +11,12 @@ public class NegativeOperation extends ASTOperation {
 
   public NegativeOperation(ASTElement expression) {
     this.expression = expression;
+    this.expression.setParent(this);
   }
 
   @Override
   public String toString() {
-    return "-" + expression;
+    return "(-(" + expression + "))";
   }
 
   @Override

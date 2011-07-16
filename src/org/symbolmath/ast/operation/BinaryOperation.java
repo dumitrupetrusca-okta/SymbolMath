@@ -30,7 +30,7 @@ public abstract class BinaryOperation extends ASTOperation {
       newElement.setParent(this);
     } else if (element == right) {
       right = newElement;
-      newElement.setParent(parent);
+      newElement.setParent(this);
     } else {
       throw new TransformException("No such child: " + element);
     }

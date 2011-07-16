@@ -1,6 +1,17 @@
 package org.symbolmath.util;
 
-public class Util {
+import org.symbolmath.ast.ASTElement;
+
+public class SymbolMathUtil {
+
+  public static void checkParents(ASTElement element, ASTElement parent) {
+    if (element.getParent() != parent) {
+      throw new RuntimeException("Wrong parent");
+    }
+    for (ASTElement child : element.getChildren()) {
+      checkParents(child, element);
+    }
+  }
 
   public static boolean isIdentifier(String s) {
     if (!Character.isJavaIdentifierStart(s.charAt(0))) {

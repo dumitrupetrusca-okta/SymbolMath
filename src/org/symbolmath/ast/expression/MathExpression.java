@@ -1,7 +1,6 @@
 package org.symbolmath.ast.expression;
 
 import org.symbolmath.ast.ASTElement;
-import org.symbolmath.scanner.TokenType;
 
 import java.util.List;
 
@@ -10,6 +9,13 @@ public abstract class MathExpression extends ASTElement {
 
   public MathExpression(List<ASTElement> terms) {
     this.terms = terms;
+    setTermParents();
+  }
+
+  private void setTermParents() {
+    for (ASTElement term : terms) {
+      term.setParent(this);
+    }
   }
 
   @Override

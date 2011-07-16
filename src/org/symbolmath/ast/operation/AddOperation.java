@@ -19,25 +19,4 @@ public class AddOperation extends BinaryOperation {
     return left + "+" + right;
   }
 
-  @Override
-  public MathExpression createExpression() {
-    List<ASTElement> terms = new ArrayList<ASTElement>();
-    collectTerms(this, terms);
-    return new AdditiveExpression(terms);
-  }
-
-  private void collectTerms(AddOperation addOp, List<ASTElement> terms) {
-    ASTElement left = addOp.getLeft();
-    if (left instanceof AddOperation) {
-      collectTerms((AddOperation) left, terms);
-    } else {
-      terms.add(left);
-    }
-    ASTElement right = addOp.getRight();
-    if (right instanceof AddOperation) {
-      collectTerms((AddOperation) right, terms);
-    } else {
-      terms.add(right);
-    }
-  }
 }

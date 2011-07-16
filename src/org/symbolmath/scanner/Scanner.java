@@ -2,7 +2,7 @@ package org.symbolmath.scanner;
 
 import org.symbolmath.exception.ParseException;
 import org.symbolmath.exception.SyntaxException;
-import org.symbolmath.util.Util;
+import org.symbolmath.util.SymbolMathUtil;
 
 public class Scanner {
   private boolean ignoreWhitespace;
@@ -65,7 +65,7 @@ public class Scanner {
     do {
       digitText.append((char)currentChar);
     } while (isDigit(nextChar()));
-    return new Token(TokenType.INTEGER, Util.parseAsInt(digitText.toString()));
+    return new Token(TokenType.INTEGER, SymbolMathUtil.parseAsInt(digitText.toString()));
   }
 
   private Token parseWhitespace() {

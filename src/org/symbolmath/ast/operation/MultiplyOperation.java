@@ -19,25 +19,4 @@ public class MultiplyOperation extends BinaryOperation {
     return left + "*" + right;
   }
 
-  @Override
-  public MathExpression createExpression() {
-    List<ASTElement> terms = new ArrayList<ASTElement>();
-    collectTerms(this, terms);
-    return MultiplicativeExpression.create(terms);
-  }
-
-  private void collectTerms(MultiplyOperation addOp, List<ASTElement> terms) {
-    ASTElement left = addOp.getLeft();
-    if (left instanceof MultiplyOperation) {
-      collectTerms((MultiplyOperation) left, terms);
-    } else {
-      terms.add(left);
-    }
-    ASTElement right = addOp.getRight();
-    if (right instanceof MultiplyOperation) {
-      collectTerms((MultiplyOperation) right, terms);
-    } else {
-      terms.add(right);
-    }
-  }
 }

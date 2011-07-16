@@ -6,8 +6,4 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public abstract class ASTOperation extends ASTElement {
 
-  public MathExpression createExpression() {
-    throw new NotImplementedException();
-  }
-
 }

@@ -2,39 +2,49 @@ package org.symbolmath.transformer;
 
 import org.symbolmath.ast.ASTElement;
 import org.symbolmath.ast.expression.MathExpression;
-import org.symbolmath.ast.operation.ASTOperation;
-import org.symbolmath.ast.operation.AddOperation;
-import org.symbolmath.ast.operation.MultiplyOperation;
+import org.symbolmath.ast.operation.BinaryOperation;
 import org.symbolmath.parser.Parser;
+import org.symbolmath.util.SymbolMathUtil;
 
 public class Transformer {
+  private static ExpressionTransformer[] transformers = {
+      new MultiplicativeTransformer(),
+      new AdditiveTransformer()
+  };
   private ASTElement element;
 
   public Transformer(ASTElement element) {
     this.element = element;
   }
 
+  public Transformer(String s) {
+    this(new Parser(s, true).parse());
+  }
+
   public ASTElement transform() {
-    ASTElement element2 = transform(element, MultiplyOperation.class);
-    ASTElement element3 = transform(element, AddOperation.class);
-    return element3;
+    SymbolMathUtil.checkParents(this.element, null);
+    for (ExpressionTransformer transformer : transformers) {
+      this.element = transform(this.element, transformer);
+      SymbolMathUtil.checkParents(this.element, null);
+    }
+    return this.element;
   }
 
-  private ASTElement transform(ASTElement element, Class<? extends ASTOperation> operationClass) {
-    if (element.getClass().equals(operationClass)) {
-      MathExpression expression = ((ASTOperation) element).createExpression();
-      ASTElement parent = element.getParent();
+  private ASTElement transform(ASTElement operation, ExpressionTransformer transformer) {
+    if (transformer.canTransform(operation)) {
+      MathExpression expression = transformer.transform((BinaryOperation) operation);
+      ASTElement parent = operation.getParent();
       if (parent != null) {
-        parent.replaceChild(element, expression);
-      } else {
-        element = expression;
+        parent.replaceChild(operation, expression);
       }
+      operation = expression;
     }
 
-    for (ASTElement child : element.getChildren()) {
-      transform(child, operationClass);
+    for (ASTElement child : operation.getChildren()) {
+      transform(child, transformer);
     }
 
-    return element;
+    return operation;
   }
+
 }
