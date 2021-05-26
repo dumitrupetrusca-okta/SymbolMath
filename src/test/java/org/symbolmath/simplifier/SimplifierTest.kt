@@ -1,42 +1,45 @@
-package org.symbolmath.simplifier;
+package org.symbolmath.simplifier
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+class SimplifierTest {
+    @Test
+    fun testAddingNumbers() {
+        simplify("1 + 1", "2")
+    }
 
-public class SimplifierTest {
+    @Test
+    fun testAddingSignedNumbers() {
+        simplify("(-1) - (-(2-1))", "0")
+    }
 
-  @Test
-  public void testAddingNumbers() {
-    simplify("1 + 1", "2");
-  }
+    @Test
+    fun testMultiplyingNumbers() {
+        simplify("3 * 4", "12")
+    }
 
-  public void testAddingSignedNumbers() {
-    simplify("(-1) - (-(2-1))", "0");
-  }
+    @Test
+    fun testMultiplyingSignedNumbers() {
+        simplify("3 * (-4)", "-12")
+    }
 
-  public void testMultiplyingNumbers() {
-    simplify("3 * 4", "12");
-  }
+    @Test
+    fun testDividingNumbers() {
+        simplify("4 / 2", "2")
+    }
 
-  public void testMultiplyingSignedNumbers() {
-    simplify("3 * (-4)", "-12");
-  }
+    @Test
+    fun testDividingSignedNumbers1() {
+        simplify("4 / (-2)", "-2")
+    }
 
-  public void testDividingNumbers() {
-    simplify("4 / 2", "2");
-  }
+    @Test
+    fun testDividingSignedNumbers2() {
+        simplify("-4 / -2", "2")
+    }
 
-  public void testDividingSignedNumbers1() {
-    simplify("4 / (-2)", "-2");
-  }
-
-  public void testDividingSignedNumbers2() {
-    simplify("-4 / -2", "2");
-  }
-
-  private void simplify(String expression, String result) {
-    assertEquals(result, new Simplifier(expression).simplify().toString());
-  }
-
+    private fun simplify(expression: String, result: String) {
+        Assertions.assertEquals(result, Simplifier(expression).simplify().toString())
+    }
 }

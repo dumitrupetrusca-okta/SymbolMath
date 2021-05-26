@@ -1,79 +1,76 @@
-package org.symbolmath.parser;
+package org.symbolmath.parser
 
-import org.junit.jupiter.api.Test;
-import org.symbolmath.ast.ASTElement;
-import org.symbolmath.ast.leaf.IdentifierElement;
-import org.symbolmath.ast.leaf.IntegerElement;
-import org.symbolmath.ast.expression.NegativeTerm;
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
+import org.symbolmath.ast.expression.NegativeTerm
+import org.symbolmath.ast.leaf.IdentifierElement
+import org.symbolmath.ast.leaf.IntegerElement
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-public class ParserTest {
-
+class ParserTest {
     @Test
-    public void testWorksWithEmptyInput() {
-        new Parser("", true).parse();
+    fun testWorksWithEmptyInput() {
+        Parser("", true).parse()
     }
 
     @Test
-    public void testInt() {
-        ASTElement element = new Parser("1", true).parse();
-        assertTrue(element instanceof IntegerElement);
+    fun testInt() {
+        val element = Parser("1", true).parse()
+        Assertions.assertTrue(element is IntegerElement)
     }
 
     @Test
-    public void testPositiveInt() {
-        ASTElement element = new Parser("+1", true).parse();
-        assertTrue(element instanceof IntegerElement);
+    fun testPositiveInt() {
+        val element = Parser("+1", true).parse()
+        Assertions.assertTrue(element is IntegerElement)
     }
 
     @Test
-    public void testNegativeInt() {
-        ASTElement element = new Parser("-1", true).parse();
-        assertTrue(element instanceof NegativeTerm);
-        assertTrue(element.getChildren().get(0) instanceof IntegerElement);
+    fun testNegativeInt() {
+        val element = Parser("-1", true).parse()
+        Assertions.assertTrue(element is NegativeTerm)
+        Assertions.assertTrue(element.children[0] is IntegerElement)
     }
 
     @Test
-    public void testVariable() {
-        ASTElement element = new Parser("x", true).parse();
-        assertTrue(element instanceof IdentifierElement);
+    fun testVariable() {
+        val element = Parser("x", true).parse()
+        Assertions.assertTrue(element is IdentifierElement)
     }
 
     @Test
-    public void testPositiveVariable() {
-        ASTElement element = new Parser("+x", true).parse();
-        assertTrue(element instanceof IdentifierElement);
+    fun testPositiveVariable() {
+        val element = Parser("+x", true).parse()
+        Assertions.assertTrue(element is IdentifierElement)
     }
 
     @Test
-    public void testNegativeVariable() {
-        ASTElement element = new Parser("-x", true).parse();
-        assertTrue(element instanceof NegativeTerm);
-        assertTrue(element.getChildren().get(0) instanceof IdentifierElement);
+    fun testNegativeVariable() {
+        val element = Parser("-x", true).parse()
+        Assertions.assertTrue(element is NegativeTerm)
+        Assertions.assertTrue(element.children[0] is IdentifierElement)
     }
 
     @Test
-    public void testIntInParens() {
-        ASTElement element = new Parser("(1)", true).parse();
-        assertTrue(element instanceof IntegerElement);
+    fun testIntInParens() {
+        val element = Parser("(1)", true).parse()
+        Assertions.assertTrue(element is IntegerElement)
     }
 
     @Test
-    public void testNegativeIntInParens() {
-        ASTElement element = new Parser("-(1)", true).parse();
-        assertTrue(element instanceof NegativeTerm);
+    fun testNegativeIntInParens() {
+        val element = Parser("-(1)", true).parse()
+        Assertions.assertTrue(element is NegativeTerm)
     }
 
     @Test
-    public void testVariableInParens() {
-        ASTElement element = new Parser("(x)", true).parse();
-        assertTrue(element instanceof IdentifierElement);
+    fun testVariableInParens() {
+        val element = Parser("(x)", true).parse()
+        Assertions.assertTrue(element is IdentifierElement)
     }
 
     @Test
-    public void testNegativeVariableInParens() {
-        ASTElement element = new Parser("-(x)", true).parse();
-        assertTrue(element instanceof NegativeTerm);
+    fun testNegativeVariableInParens() {
+        val element = Parser("-(x)", true).parse()
+        Assertions.assertTrue(element is NegativeTerm)
     }
 }

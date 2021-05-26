@@ -4,33 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a62ec700-4bb5-4b86-af4c-29a794b1f8a3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/PowerCollapseSimplifier.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/ASTElement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/ASTElement.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/expression/MultiplicativeTerm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/expression/MultiplicativeTerm.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/expression/Term.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/expression/Term.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/leaf/IdentifierElement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/leaf/IdentifierElement.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/leaf/IntegerElement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/leaf/IntegerElement.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/operation/BinaryOperation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/expression/BinaryTerm.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/operation/DivideOperation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/expression/DivideTerm.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/operation/NegativeOperation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/expression/NegativeTerm.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/operation/PowerOperation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/ast/expression/PowerTerm.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/parser/Parser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/parser/Parser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/AdditiveSimplifier.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/AddSimplifier.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/DivideSimplifier.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/DivSimplifier.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/MultiplyToPowerSimplifier.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/MulToPowSimplifier.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/NegativeSimplifier.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/NegSimplifier.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/Simplifier.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/Simplifier.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/transformer/AdditiveTransformer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/AddCollapseSimplifier.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/transformer/ExpressionTransformer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/ExpressionTransformer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/transformer/MultiplyTransformer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/MulCollapseSimplifier.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/transformer/Order.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier/Order.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/symbolmath/transformer/Transformer.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/symbolmath/parser/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/symbolmath/parser/ParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/symbolmath/transformer/TransformerTest.java" beforeDir="false" />
-    </list>
+    <list default="true" id="a62ec700-4bb5-4b86-af4c-29a794b1f8a3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,6 +80,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/org/symbolmath/simplifier" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -130,7 +105,7 @@
       <recent name="org.symbolmath.simplifier" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt">
+  <component name="RunManager" selected="JUnit.SimplifierTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.symbolmath.Main" />
       <module name="SymbolMath.main" />
@@ -144,6 +119,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SimplifierTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SymbolMath.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.symbolmath.simplifier.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.symbolmath.simplifier" />
+      <option name="MAIN_CLASS_NAME" value="org.symbolmath.simplifier.SimplifierTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.symbolmath.MainKt" />
       <module name="SymbolMath.main" />
@@ -153,6 +143,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SimplifierTest" />
         <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Application.Main" />
       </list>
