@@ -1,0 +1,95 @@
+plugins {
+    id 'java'
+    id "java-library"
+    id 'groovy'
+    id 'maven-publish'
+    id 'net.researchgate.release' version "${release_plugin_version}"
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+}
+
+group = 'org.symbolmath'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+def artifactoryUsername = project.hasProperty('artifactoryUsername') ? project.artifactoryUsername : System.getenv('ARTIFACTORY_USERNAME')
+def artifactoryPassword = project.hasProperty('artifactoryPassword') ? project.artifactoryPassword : System.getenv('ARTIFACTORY_PASSWORD')
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+dependencies {
+    implementation "com.google.guava:guava:30.1.1-jre"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+//    testImplementation "com.tngtech.archunit:archunit-junit5-api:${archunit_junit5_version}"
+//    testRuntimeOnly "com.tngtech.archunit:archunit-junit5-engine:${archunit_junit5_version}"
+    testImplementation "org.assertj:assertj-core:3.19.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+wrapper {
+    gradleVersion = '6.1'
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
+jar {
+    manifest {
+        attributes("Implementation-Title": project.name, "Implementation-Version": project.version)
+    }
+}
+
+release {
+    tagTemplate = 'v${version}'
+    failOnSnapshotDependencies = false
+    git {
+        requireBranch = 'main'
+    }
+}
+
+afterReleaseBuild.dependsOn 'publishMavenJavaPublicationToMavenRepository'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username artifactoryUsername
+                password artifactoryPassword
+            }
+            println "VERSION = " + version
+//            url version.matches('^.*-(SNAPSHOT)$') ? apdSnapshotsUrl : apdReleasesUrl
+            println "Publishing to " + url
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+    reports.html.enabled = false
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
